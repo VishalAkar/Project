@@ -9,7 +9,9 @@ web.config.debug = False
 urls = (
     '/','Home',
     '/upload-image/(.*)','upload',
-    '/freshapples','FreshApples'
+    '/freshapples','FreshApples',
+    '/day3','Day3',
+    '/day5','Day5'
 )
 
 app = web.application(urls,globals())
@@ -29,20 +31,11 @@ render = web.template.render("Views/Tempelates",globals={'session':session_data,
 
 class Home:
     def GET(self):
-        return render.index()
+        return render.index('1')
     def POST(self):
         data = web.input()
         print(data.keys())
-    """
-        s=str(data.keys())
-        s = s[12:]
-        s=s[0:len(s)-3]
-        u = upload()
-        s=u.filepath
-        print(s)
-        mod = model.model1()
-        res=mod.webmodel(s)
-        return res"""
+   
       
 class upload:
     print("upload called")
@@ -61,50 +54,29 @@ class upload:
         res=mod.webmodel(filepath)
         a = str(res)
         print(a)
-        if(a=='freshapples'):
+        if(a=='day_1_2_freshapples'):
             return web.redirect('/freshapples')
+        elif(a=='day2_5_freshapples'):
+            return web.redirect('/day3')
+        elif(a=='day_5plus_freshapples'):
+            return web.redirect('/day5')
         else:
-            return res
+            return render.index('2')
+            
 
 class FreshApples:
     def GET(self):
-        return render.apple()
+        return render.one()
 
-'''
-class Register:
+class Day3:
     def GET(self):
-        return render.Register()
+        return render.three()
 
-class PostRegistration:
-    def POST(self):
-        data = web.input()
-        print(data)
-        reg_model = RegisterModel.RegisterModel()
-        reg_model.insert_user(data)
-
-class Database:
+class Day5:
     def GET(self):
-        return render.Database()
-    
-    def POST(self):
-        data = web.input()
-        reg_model = RegisterModel.RegisterModel()
-        reg_model.imageUpload(data)
+        return render.five()
 
-class Login:
-    def GET(self):
-        return render.Login()
 
-    def POST(self):
-        data = web.input()
-        print(data)
-        reg_model = RegisterModel.RegisterModel()
-        flag = reg_model.isUser(data)
-        if flag == True:
-            return web.redirect('/database','303')
-        else:
-            print("You are not authorized")
-            '''
 
 if __name__ =="__main__":
     app.run()   

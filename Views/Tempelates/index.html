@@ -1,3 +1,4 @@
+$def with(toggle)
 
 <!DOCTYPE html>
 <html>
@@ -13,6 +14,13 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+		<script>
+			if ($toggle == '2')
+			{
+				alert("Image you have entered is not an Apple");
+				window.location.replace('https://projectgrowup.herokuapp.com/#start');
+			}
+		</script>
 	  <style>
 	  .custom
 	  {
@@ -211,12 +219,8 @@ input[type=submit]:hover {
     margin-top: 0;
   }
 }
-
-
-
-
-
 	  </style>
+
 	  </head>
 	  <body onload="typeWriter()">
 		  <div id="main">
